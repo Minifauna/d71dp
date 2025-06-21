@@ -201,7 +201,6 @@ def show_post(post_id):
     return render_template("post.html", post=requested_post, current_user=current_user, form=comment_form)
 
 
-# Use a decorator so only an admin user can create new posts
 @app.route("/new-post", methods=["GET", "POST"])
 @admin_only
 def add_new_post():
@@ -221,7 +220,6 @@ def add_new_post():
     return render_template("make-post.html", form=form, current_user=current_user)
 
 
-# Use a decorator so only an admin user can edit a post
 @app.route("/edit-post/<int:post_id>", methods=["GET", "POST"])
 def edit_post(post_id):
     post = db.get_or_404(BlogPost, post_id)
