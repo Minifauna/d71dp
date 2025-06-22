@@ -220,6 +220,13 @@ def add_new_post():
     return render_template("make-post.html", form=form, current_user=current_user)
 
 
+@app.route("/stompinggrounds")
+@admin_only
+def who_are_you_people():
+    all_users = db.session.execute(db.select(User).order_by(User.id)).scalars().all()
+    return render_template("everyone.html", everyone=all_users)
+
+
 @app.route("/edit-post/<int:post_id>", methods=["GET", "POST"])
 def edit_post(post_id):
     post = db.get_or_404(BlogPost, post_id)

@@ -1,0 +1,11 @@
+{% include "header.html" %}
+
+<div>
+<ul>
+    {% for one in everyone %}
+    <li>{{ one.name }} | {{ one.email[0:3] }}</li>
+    {% endfor %}
+</ul>
+</div>
+
+{% include "footer.html" %}
