@@ -1,11 +1,40 @@
 {% include "header.html" %}
-
-<div>
-<ul>
-    {% for one in everyone %}
-    <li>{{ one.name }} | {{ one.email[0:3] }}</li>
+<header
+  class="masthead"
+  style="background-image: url('../static/assets/img/Moose_Alces_Alces_(42270420).jpeg')"
+>
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="site-heading">
+          <h1>Admin Panel</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  {% for one in everyone %}
+  <tbody>
+    <tr>
+      <th scope="row">{{ one.id }}</th>
+      <td>{{ one.name }}</td>
+      <td>{{ one.email }}</td>
+    </tr>
     {% endfor %}
-</ul>
+  </tbody>
+</table>
 </div>
-
+</div>
+</div>
 {% include "footer.html" %}
