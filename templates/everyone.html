@@ -22,6 +22,7 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   {% for one in everyone %}
@@ -30,6 +31,11 @@
       <th scope="row">{{ one.id }}</th>
       <td>{{ one.name }}</td>
       <td>{{ one.email }}</td>
+      <td>
+        <form action="{{ url_for('delete_user', user_id=one.id) }}" method="POST">
+        <input type="submit" value="✘">
+        </form>
+      </td>
     </tr>
     {% endfor %}
   </tbody>

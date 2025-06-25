@@ -198,14 +198,23 @@ def add_new_post():
         db.session.add(new_post)
         db.session.commit()
         return redirect(url_for("get_all_posts"))
-    return render_template("make-post.html", form=form, current_user=current_user)
+    return render_template("make-post.html", form=form, current_user=current_user, admin=os.getenv('ADMIN_EMAIL'))
 
 
-@app.route("/stompinggrounds")
+@app.route("/stompinggrounds", methods=["POST", "GET"])
 @admin_only
 def who_are_you_people():
     all_users = db.session.execute(db.select(User).order_by(User.id)).scalars().all()
     return render_template("everyone.html", everyone=all_users)
+
+@app.route("/delete_user/<int:user_id>", methods=["POST"])
+@admin_only
+def delete_user(user_id):
+    user_to_delete = db.session.execute(db.select(User).where(User.id == user_id)).scalar()
+    if user_to_delete.email != os.getenv('ADMIN_EMAIL'):
+        db.session.delete(user_to_delete)
+        db.session.commit()
+    return redirect(url_for('who_are_you_people'))
 
 
 @app.route("/edit-post/<int:post_id>", methods=["GET", "POST"])
