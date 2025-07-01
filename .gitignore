@@ -5,7 +5,7 @@
 .vscode
 
 ### Also any macOS specific files
-.DS_Store
+.DS_Storef
 .AppleDouble
 .LSOverride
 Icon
