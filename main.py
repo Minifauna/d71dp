@@ -162,6 +162,9 @@ def get_all_posts():
     posts = result.scalars().all()
     return render_template("index.html", all_posts=posts, current_user=current_user, admin=os.getenv('ADMIN_EMAIL'))
 
+@app.route('/tropes')
+def horror_tropes():
+    return render_template("tropes.html")
 
 @app.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
