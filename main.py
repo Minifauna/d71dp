@@ -165,7 +165,7 @@ def get_all_posts():
 
 @app.route('/tropes')
 def horror_tropes():
-    df_tropes = pd.read_json('/Users/Moose/PycharmProjects/d71dpmac/d71dp/static/assets/HorrorTropes.json', orient='index').sample(10)
+    df_tropes = pd.read_json('static/assets/HorrorTropes.json', orient='index').sample(10)
     trope_names = df_tropes.index
     trope_urls = [value[0] for value in df_tropes.values]
     trope_zip = zip(trope_names, trope_urls)
