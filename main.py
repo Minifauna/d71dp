@@ -12,6 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 import os
 from dotenv import load_dotenv, dotenv_values
+import pandas as pd
 
 load_dotenv()
 
@@ -164,7 +165,12 @@ def get_all_posts():
 
 @app.route('/tropes')
 def horror_tropes():
-    return render_template("tropes.html")
+    df_tropes = pd.read_json('/Users/Moose/PycharmProjects/d71dpmac/d71dp/static/assets/HorrorTropes.json', orient='index').sample(10)
+    trope_names = df_tropes.index
+    trope_urls = [value[0] for value in df_tropes.values]
+    trope_zip = zip(trope_names, trope_urls)
+    trope_dict = dict(trope_zip)
+    return render_template("tropes.html", tropes=trope_dict, trope_names=trope_names)
 
 @app.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
@@ -261,4 +267,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=False, port=5001)
+    app.run(debug=False)
