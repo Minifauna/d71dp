@@ -13,6 +13,7 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 import os
 from dotenv import load_dotenv, dotenv_values
 import pandas as pd
+import re
 
 load_dotenv()
 
@@ -166,7 +167,7 @@ def get_all_posts():
 @app.route('/tropes')
 def horror_tropes():
     df_tropes = pd.read_json('static/assets/HorrorTropes.json', orient='index').sample(10)
-    trope_names = df_tropes.index
+    trope_names = [' '.join(filter(None, re.split(r'(?=[A-Z])', name))) for name in df_tropes.index]
     trope_urls = [value[0] for value in df_tropes.values]
     trope_zip = zip(trope_names, trope_urls)
     trope_dict = dict(trope_zip)
