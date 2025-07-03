@@ -30,7 +30,9 @@
       <div class="post-preview">
         <a href="{{ tropes[key] }}" target="__blank">
           <h2 class="post-title">
+            {% if length < 11 %}
             <input type="checkbox">
+            {% endif %}
           {{ key }}</h2>
         </a>
       </div>
