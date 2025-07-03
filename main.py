@@ -174,6 +174,17 @@ def horror_tropes():
     trope_dict = dict(trope_zip)
     return render_template("tropes.html", tropes=trope_dict)
 
+@app.route('/all-tropes')
+def all_tropes():
+    df_tropes = pd.read_json('static/assets/HorrorTropes.json', orient='index')
+    trope_names = [' '.join(filter(None, re.split(r'(?=[A-Z])', name))) for name in df_tropes.index]
+    trope_urls = [value[0] for value in df_tropes.values]
+    trope_zip = zip(trope_names, trope_urls)
+    temp_dict = dict(trope_zip)
+    sorted_dict = sorted(temp_dict.items())
+    trope_dict = dict(sorted_dict)
+    return render_template("tropes.html", tropes=trope_dict)
+
 @app.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
     requested_post = db.get_or_404(BlogPost, post_id)
