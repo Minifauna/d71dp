@@ -9,7 +9,7 @@ from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
+from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm, TropeForm
 import os
 from dotenv import load_dotenv, dotenv_values
 import pandas as pd
@@ -164,9 +164,10 @@ def get_all_posts():
     posts = result.scalars().all()
     return render_template("index.html", all_posts=posts, current_user=current_user, admin=os.getenv('ADMIN_EMAIL'))
 
-@app.route('/tropes')
+@app.route('/tropes', methods=["GET", "POST"])
 def horror_tropes():
-    df_tropes = pd.read_json('static/assets/HorrorTropes.json', orient='index').sample(5)
+    data = pd.read_json('static/assets/HorrorTropes.json', orient='index')
+    df_tropes = data.sample(5)
     trope_names = [' '.join(filter(None, re.split(r'(?=[A-Z])', name))) for name in df_tropes.index]
     trope_urls = [value[0] for value in df_tropes.values]
     trope_zip = zip(trope_names, trope_urls)

@@ -28,3 +28,8 @@ class LoginForm(FlaskForm):
 class CommentForm(FlaskForm):
     comment_text = CKEditorField("Comment", validators=[DataRequired()])
     submit = SubmitField("Submit Comment")
+
+class TropeForm(FlaskForm):
+    old_trope = StringField("Trope to Trade", validators=[DataRequired()])
+    new_trope = StringField("Trope Requested", validators=[DataRequired()])
+    submit = SubmitField("Trade!")
