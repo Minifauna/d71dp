@@ -162,7 +162,7 @@ def logout():
 def get_all_posts():
     result = db.session.execute(db.select(BlogPost))
     posts = result.scalars().all()
-    return render_template("index.html", all_posts=posts, current_user=current_user, admin=os.getenv('ADMIN_EMAIL'))
+    return render_template("index.html", all_posts=posts, current_user=current_user)
 
 @app.route('/tropes', methods=["GET", "POST"])
 def horror_tropes():
@@ -172,7 +172,8 @@ def horror_tropes():
     trope_urls = [value[0] for value in df_tropes.values]
     trope_zip = zip(trope_names, trope_urls)
     trope_dict = dict(trope_zip)
-    return render_template("tropes.html", tropes=trope_dict)
+    num_tropes = len(trope_dict)
+    return render_template("tropes.html", tropes=trope_dict, length=num_tropes)
 
 @app.route('/all-tropes')
 def all_tropes():
@@ -183,7 +184,8 @@ def all_tropes():
     temp_dict = dict(trope_zip)
     sorted_dict = sorted(temp_dict.items())
     trope_dict = dict(sorted_dict)
-    return render_template("tropes.html", tropes=trope_dict)
+    num_tropes = len(trope_dict)
+    return render_template("tropes.html", tropes=trope_dict, length=num_tropes)
 
 @app.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
