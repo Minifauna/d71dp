@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -26,7 +25,6 @@
 
 <body>
   <!-- Navigation-->
-
   <nav class="navbar navbar-expand-lg" id="mainNav"
   style="background: #000000;
 background: linear-gradient(180deg,rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .10) 50%, rgba(0, 0, 0, 1) 100%);
@@ -50,18 +48,7 @@ background: linear-gradient(180deg,rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .10) 50%, 
           <li class="nav-item active">
             <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for('get_all_posts') }}">Home</a>
           </li>
-          {% if not current_user.is_authenticated: %}
-          <li class="nav-item">
-            <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for('login') }}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for('register') }}">Register</a>
-          </li>
-          {% else: %}
-          <li class="nav-item">
-            <a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for('logout') }}">Log Out</a>
-          </li>
-          {% endif %}
+          
           <!-- parent tag is class dropdown, toggle link/button is dropdown-toggle
           parent list/div class of contents is dropdown-menu dropdown-menu-dark
           data-bs-auto-close set to outside for manual dropdown close to allow for submenu access via click -->
@@ -101,13 +88,8 @@ background: linear-gradient(180deg,rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .10) 50%, 
           </li>
             </ul>
           </li>
-          
         </ul>
       </div>
-    </div>
-    </li>
-    </ul>
-    </div>
     </div>
   </nav>
 </body>
