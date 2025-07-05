@@ -27,7 +27,10 @@
 <body>
   <!-- Navigation-->
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient" id="mainNav">
+  <nav class="navbar navbar-expand-lg" id="mainNav"
+  style="background: #000000;
+background: linear-gradient(180deg,rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .10) 50%, rgba(0, 0, 0, 1) 100%);
+">
     <div class="container">
       <a class="navbar-brand" href="https://github.com/Minifauna" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
@@ -72,17 +75,21 @@
             </a>
 
             <!-- then a list class dropdown-menu with dropdown-menu-dark for dark styling -->
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background: #000000;
+background: linear-gradient(180deg,rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .10) 50%, rgba(0, 0, 0, 1) 100%);
+">
               <li class="nav-item dropend">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                  aria-expanded="false">Horror Tropes</a>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
+                  aria-expanded="false" style="color: white;">Horror Tropes</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background: #000000;
+background: linear-gradient(180deg,rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .10) 50%, rgba(0, 0, 0, 1) 100%);
+">
                   <li>
                     <a class="nav-link dropdown-item px-lg-3 py-3 py-lg-4"
-                      href="{{ url_for('horror_tropes') }}">Game</a>
+                      href="{{ url_for('horror_tropes') }}" style="color: white;">Game</a>
                   </li>
                   <li>
-                    <a class="nav-link dropdown-item px-lg-3 py-3 py-lg-4" href="{{ url_for('all_tropes') }}">Full
+                    <a class="nav-link dropdown-item px-lg-3 py-3 py-lg-4" href="{{ url_for('all_tropes') }}" style="color: white;">Full
                       List</a>
                   </li>
                 </ul>
