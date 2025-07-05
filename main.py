@@ -14,6 +14,7 @@ import os
 from dotenv import load_dotenv, dotenv_values
 import pandas as pd
 import re
+from projects import translation
 
 load_dotenv()
 
@@ -282,4 +283,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
