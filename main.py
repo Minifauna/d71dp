@@ -49,5 +49,12 @@ def all_tropes():
     return render_template("tropes.html", tropes=trope_dict, length=num_tropes)
 
 
+@app.route('/todo')
+def todo_list():
+    todo_list = ['undo/redo site styling', 
+    'update tables for project use', 
+    'complete morse code translator with focus on deployment here']
+    return render_template('todo.html', todo=todo_list)
+
 if __name__ == "__main__":
     app.run(debug=False)
