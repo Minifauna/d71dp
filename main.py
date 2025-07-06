@@ -53,7 +53,8 @@ def all_tropes():
 def todo_list():
     todo_list = ['undo/redo site styling', 
     'update tables for project use', 
-    'complete morse code translator with focus on deployment here']
+    'complete morse code translator with focus on deployment here',
+    'make todo list more interactive']
     return render_template('todo.html', todo=todo_list)
 
 if __name__ == "__main__":
