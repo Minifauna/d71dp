@@ -1,0 +1,60 @@
+body{
+    background: linear-gradient(90deg, #19316b 0%, #182848 100%);
+}
+
+h1, h5{
+    text-align: center;
+    text-justify: auto;
+    text-shadow: #19316b;
+    color: aliceblue;
+    mix-blend-mode: difference;
+}
+
+#jumbotron{
+    background: linear-gradient(90deg,rgba(255, 255, 255, 0) 75%, rgba(0, 0, 0, 1) 100%), url('/static/assets/img/mothman.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#indexJumbotron{
+    background-image: url('/static/assets/img/Moose_Alces_Alces_(42270420).jpeg');
+    background-size: cover;
+}
+
+.card{
+    color: aliceblue;
+    background: transparent;
+}
+
+.card-link{
+    color: rgba(255, 0, 51, 0.85);
+}
+
+.card-link:hover{
+    color: rgb(255, 0, 51);
+}
+
+.col{
+    color: aliceblue;
+}
+
+.container-fluid{
+    color: aliceblue;
+}
+
+.dropdown-menu{
+    background: linear-gradient(90deg, #19316b 0%, #182848 100%);
+}
+
+.list-group-item{
+    color: aliceblue;
+    background: linear-gradient(90deg, #19316b 0%, #182848 100%);
+}
+
+.nav-link:hover{
+    background: linear-gradient(270deg, #132652 0%, #0c1527 100%);
+}
+
+.row{
+    color: aliceblue;
+}

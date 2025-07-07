@@ -40,6 +40,9 @@ def all_tropes():
     num_tropes = len(trope_dict)
     return render_template("tropes.html", tropes=trope_dict, length=num_tropes)
 
+@app.route('/devtest')
+def devtest():
+    return render_template('devtest.html')
 
 @app.route('/todo')
 def todo_list():
@@ -50,4 +53,4 @@ def todo_list():
     return render_template('todo.html', todo=todo_list)
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)

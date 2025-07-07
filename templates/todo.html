@@ -1,23 +1,11 @@
-{% include "header.html" %}
-<header
-  class="masthead"
-  style="background-image: url('../static/assets/img/Moose_Alces_Alces_(42270420).jpeg')"
->
-<div class="container position-relative px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7">
-        <div class="site-heading">
-          <h1>TODO:</h1>
-          <ul>
-            {% for item in todo %}
-            <li>
-                <input type="checkbox">
-                {{ item }}
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-{% include "footer.html" %}
+{% extends 'base.html' %}
+{% block content %}
+<ul class="list-group">
+{% for item in todo %}
+<li class="list-group-item">
+  <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
+  {{ item }}
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

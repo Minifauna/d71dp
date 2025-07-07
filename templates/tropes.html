@@ -1,46 +1,38 @@
-{% from 'bootstrap5/form.html' import render_form %}
-{% include "header.html" %}
-<header
-  class="masthead"
-  style="background-image: url('../static/assets/img/Cryptozoology_banner_Mothman.jpeg')"
->
-<title>Trope-ical Storm</title>
-<div class="container position-relative px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7">
-        {% if length < 11 %}
-        <div class="site-heading">
-          <h1>Trope Game</h1>
-          <span class="subheading">Enjoy the movie!</span>
-        </div>
-        {% else %}
-        <div class="site-heading">
-          <h1>Horror Tropes</h1>
-          <span class="subheading">Full List</span>
-        </div>
-        {% endif %}
-      </div>
+{% extends 'base.html' %}
+{% block title %}
+{% if length > 11 %}
+Full List
+{% else %}
+Trope Game
+{% endif %}
+{% endblock %}
+{% block content %}
+<div class="container py-5" id="jumbotron">
+{% if length > 11 %}
+<h1>Full List</h1>
+{% else %}
+<h1>Enjoy the Movie!</h1>
+{% endif %}
+</div>
+<div class="container-fluid">
+    <div class="row">
+{% for trope in tropes.keys() %}
+{% if length < 11 %}
+<div class="col-6">
+{% else %}
+<div class="col-6">
+{% endif %}
+<!-- trope is the title, tropes[trope] is the URL -->
+<div class="card">
+    <div class="card-body">
+        <p class="card-title">{% if length < 11 %}
+        <input class="form-check-input" type="checkbox" value="">
+        {% endif %}{{ trope }}</p>
+        <a class="card-link" href="{{ tropes[trope] }}" target="__blank">Details</a>
     </div>
-  </div>
-</header>
-<div class="container px-4 px-lg-5">
-  <div class="row gx-4 gx-lg-5 justify-content-center">
-    <div class="col-md-10 col-lg-8 col-xl-7">
-       {% for key in tropes.keys() %}
-      <div class="post-preview">
-        <a href="{{ tropes[key] }}" target="__blank">
-          <h2 class="post-title">
-            {% if length < 11 %}
-            <input type="checkbox">
-            {% endif %}
-          {{ key }}</h2>
-        </a>
-      </div>
-      {% endfor %}
-      {% if form %}
-      {{ render_form(form) }}
-      {% endif %}
-      <!-- Divider-->
-      <hr class="my-4" />
-
-{% include "footer.html" %}
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

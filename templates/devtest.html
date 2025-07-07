@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid text-center">
+    container text-center (outside of grid-system)
+        <div class="row">
+            auto fit in remaining space (row1)
+            <div class="col">
+                new content (r1c1)
+            </div>
+            <div class="col">
+                same row, new column (r1c2)
+            </div>
+            <div class="col-5">
+                third column (r1c3)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                row 2 column 1 (r2c1)
+            </div>
+            <div class="col">
+                row 2 column 2 (r2c2)
+            </div>
+        </div>
+        <div class="row">
+            a third row (r3c1)
+            <div class="row">
+                a nested row (r3Ac1)
+                <div class="col">
+                    and a column within that nested row (r3Ac1)
+                </div>
+                <div class="col">
+                    a second column of text (r3Ac2)
+                </div>
+            </div>
+            <div class="row">
+                a fourth row to show the boundaries of the third more clearly
+            </div>
+        </div>
+{% endblock %}
