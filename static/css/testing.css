@@ -5,7 +5,7 @@ body{
 h1, h5{
     text-align: center;
     text-justify: auto;
-    text-shadow: #19316b;
+    text-shadow: 1px 1px 2px aliceblue;
     color: aliceblue;
     mix-blend-mode: difference;
 }
