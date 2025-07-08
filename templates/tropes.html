@@ -7,7 +7,7 @@ Trope Game
 {% endif %}
 {% endblock %}
 {% block content %}
-<div class="container py-5" id="jumbotron">
+<div class="container-fluid py-5" id="jumbotron">
 {% if length > 11 %}
 <h1>Full List</h1>
 {% else %}
@@ -20,7 +20,7 @@ Trope Game
 {% if length < 11 %}
 <div class="col-6">
 {% else %}
-<div class="col-6">
+<div class="col-6 col-md-4 col-lg-3 col-xl-2">
 {% endif %}
 <!-- trope is the title, tropes[trope] is the URL -->
 <div class="card">

@@ -1,5 +1,14 @@
 body{
-    background: linear-gradient(90deg, #19316b 0%, #182848 100%);
+    background: linear-gradient(45deg, #580000 0%, #182848 100%);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%;}    
 }
 
 h1, h5{
@@ -11,9 +20,11 @@ h1, h5{
 }
 
 #jumbotron{
-    background: linear-gradient(90deg,rgba(255, 255, 255, 0) 75%, rgba(0, 0, 0, 1) 100%), url('/static/assets/img/mothman.png');
-    background-size: cover;
+    background-image: url('/static/assets/img/Cryptozoology_banner_Mothman.png');
+    background-size: contain;
+    background-position: center;
     background-repeat: no-repeat;
+    background-blend-mode: multiply;
 }
 
 #indexJumbotron{
@@ -21,9 +32,19 @@ h1, h5{
     background-size: cover;
 }
 
+.btn-dark:hover{
+    background-blend-mode: difference;
+}
+
 .card{
     color: aliceblue;
-    background: transparent;
+    mix-blend-mode: difference;
+    background: rgba(240, 248, 255, .05);
+    background-blend-mode: difference;
+}
+
+.card:hover{
+    background-color: rgba(0, 0, 0, .5);
 }
 
 .card-link{
@@ -43,16 +64,48 @@ h1, h5{
 }
 
 .dropdown-menu{
-    background: linear-gradient(90deg, #19316b 0%, #182848 100%);
+    color: inherit;
+    background: rgba(0, 0, 0, 0.85);
 }
+
 
 .list-group-item{
     color: aliceblue;
     background: linear-gradient(90deg, #19316b 0%, #182848 100%);
 }
 
+.navbar{
+    background: rgba(0, 0, 0, 0.25);
+    background-blend-mode: difference;
+}
+
+.navbar-brand{
+    color: aliceblue;
+    mix-blend-mode: difference;
+}
+
+.navbar-brand:hover{
+    color: aliceblue;
+    background-color: black;
+    background-blend-mode: difference;
+}
+
+.nav-item:active{
+    color: aliceblue;
+}
+
+.nav-link{
+    color: aliceblue;
+    mix-blend-mode: difference;
+    background: rgba(240, 248, 255, .05);
+    background-blend-mode: difference;
+}
+
 .nav-link:hover{
-    background: linear-gradient(270deg, #132652 0%, #0c1527 100%);
+    color: aliceblue;
+    mix-blend-mode: difference;
+    background: rgba(0, 0, 0, 0.637);
+    background-blend-mode: difference;
 }
 
 .row{
