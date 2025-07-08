@@ -53,4 +53,4 @@ def todo_list():
     return render_template('todo.html', todo=todo_list)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
