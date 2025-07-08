@@ -14,7 +14,6 @@ body{
 h1, h5{
     text-align: center;
     text-justify: auto;
-    text-shadow: 1px 1px 2px aliceblue;
     color: aliceblue;
     mix-blend-mode: difference;
 }
@@ -25,6 +24,11 @@ h1, h5{
     background-position: center;
     background-repeat: no-repeat;
     background-blend-mode: multiply;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000;
 }
 
 #indexJumbotron{
