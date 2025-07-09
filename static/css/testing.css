@@ -1,7 +1,7 @@
 body{
     background: linear-gradient(45deg, #580000 0%, #000000 100%);
     background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    animation: gradient 10s ease infinite;
 }
 
 @keyframes gradient {
@@ -17,6 +17,10 @@ h1, h5{
     mix-blend-mode: difference;
 }
 
+.hero{
+    text-align: center;
+}
+
 #jumbotron{
     background-image: url('/static/assets/img/Cryptozoology_banner_Mothman.png');
     background-size: contain;
@@ -28,11 +32,6 @@ h1, h5{
     1px -1px 0 #000000,
     -1px 1px 0 #000000,
     1px 1px 0 #000000;
-}
-
-#indexJumbotron{
-    background-image: url('/static/assets/img/Moose_Alces_Alces_(42270420).jpeg');
-    background-size: cover;
 }
 
 .btn-dark:hover{
