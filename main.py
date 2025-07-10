@@ -50,7 +50,8 @@ def todo_list():
     'update tables for project use', 
     'complete morse code translator with focus on deployment here',
     'make todo list more interactive',
-    'incorporate CSS custom properties with palette generator']
+    'incorporate CSS custom properties with palette generator',
+    'remove bootstrap components in favor of own css/js']
     return render_template('todo.html', todo=todo_list)
 
 if __name__ == "__main__":
