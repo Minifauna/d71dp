@@ -1,4 +1,4 @@
-body{
+html{
     background: linear-gradient(45deg, #580000 0%, #000000 100%);
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
