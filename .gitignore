@@ -4,6 +4,12 @@
 .idea/
 .vscode
 
+# Docker stuff
+.dockerignore
+Dockerfile
+README.Docker.md
+compose.yaml
+
 ### Also any macOS specific files
 .DS_Store
 .AppleDouble
