@@ -1,4 +1,6 @@
 from flask import Flask, abort, render_template, redirect, url_for, flash, request
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
 from flask_bootstrap import Bootstrap5
 from functools import wraps
 import os
