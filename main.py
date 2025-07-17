@@ -49,7 +49,7 @@ def todo_list():
     todo_list = ['undo/redo site styling',
     'complete morse code translator with focus on deployment here',
     're-introduce Flask-SQLAlchemy for todo list',
-    'expand custom pallete with rgba']
+    'expand custom pallete with rgba, Smoky Mountain Sunset']
     return render_template('todo.html', todo=todo_list)
 
 if __name__ == "__main__":
