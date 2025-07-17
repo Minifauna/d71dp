@@ -1,23 +1,47 @@
 from flask import Flask, abort, render_template, redirect, url_for, flash, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy import Integer, String
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from flask_bootstrap import Bootstrap5
 from functools import wraps
 import os
 from dotenv import load_dotenv, dotenv_values
 import pandas as pd
 import re
+from flaskforms import Login
 from projects import translation
 
 load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('FLASK_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 Bootstrap5(app)
+
+class Base(DeclarativeBase):
+    pass
+
+db = SQLAlchemy(model_class=Base)
+db.init_app(app)
+
+class User(db.Model):
+    id: Mapped[int] = mapped_column(primary_key=True)
+    username: Mapped[str] = mapped_column(unique=True)
+    email: Mapped[str] = mapped_column(unique=True)
+
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def index():
     return render_template("index.html")
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = Login()
+    if form.validate_on_submit():
+        return redirect(url_for('index'))
+    return render_template("login.html", form=form)
 
 @app.route('/tropes')
 def horror_tropes():
