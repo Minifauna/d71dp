@@ -46,12 +46,10 @@ def devtest():
 
 @app.route('/todo')
 def todo_list():
-    todo_list = ['undo/redo site styling', 
-    'update tables for project use', 
+    todo_list = ['undo/redo site styling',
     'complete morse code translator with focus on deployment here',
-    'make todo list more interactive',
-    'incorporate CSS custom properties with palette generator',
-    'remove bootstrap components in favor of own css/js']
+    're-introduce Flask-SQLAlchemy for todo list',
+    'expand custom pallete with rgba']
     return render_template('todo.html', todo=todo_list)
 
 if __name__ == "__main__":
