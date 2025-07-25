@@ -58,14 +58,6 @@
                 >
               </li>
               {% endif %}
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  aria-current="page"
-                  href="{{ url_for('devtest') }}"
-                  >DevTest</a
-                >
-              </li>
               <li class="nav-item dropdown">
                 <button
                   class="btn btn-dark dropdown-toggle"
@@ -85,7 +77,7 @@
                     >
                   </li>
                   {% endif %}
-                  <li class="nav-item dropend">
+                  <li class="nav-item dropstart">
                     <button
                   class="btn btn-dark  dropdown-toggle"
                   type="button"
@@ -110,16 +102,16 @@
                         >
                       </li>
                     </ul>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
+                    <li class="nav-item">
                 <a
                   class="nav-link"
-                  href="https://github.com/Minifauna"
-                  target="__blank"
-                  >Github</a
+                  aria-current="page"
+                  href="{{ url_for('devtest') }}"
+                  >DevTest</a
                 >
+              </li>
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>
@@ -127,14 +119,17 @@
       </nav>
     </div>
     <!-- page content -->
+     {% if request.path == "/" %}
+    <div class="container-lg hero">
+    {% else %}
     <div class="container-fluid">
+    {% endif %}
       {% block content %}
       <p>content block</p>
       {% endblock %}
     </div>
-
     {% block scripts %}
-    <!-- javascript loading -->
+    <!-- javascript loading (call super() with any additions in other pages) -->
     {{ bootstrap.load_js() }}
     <script src="{{ url_for('static', filename='js/jstests.js') }}"></script>
     {% endblock %}

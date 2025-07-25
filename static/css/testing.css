@@ -9,6 +9,12 @@
 
 a {
     color: var(--white-900);
+    text-decoration: none;
+
+}
+
+a:hover {
+    color: var(--red-900);
 }
 
 body, html{
@@ -29,19 +35,17 @@ h1, h5{
     text-align: center;
     text-justify: auto;
     color: var(--white-900);
-    mix-blend-mode: difference;
 }
-
 .hero{
-    inline-size: fit-content;
-    margin-inline: auto;
-    text-align: center;
+    height: 100px;
+    min-width: 100px;
+    background-image: url("http://ghchart.rshah.org/Minifauna");
+    background-position: -300px;
+    background-repeat: no-repeat;
 }
 
-
-img {
-    width: 100%;
-    object-fit: contain;
+.filler {
+    height: 100px;
 }
 
 #jumbotron{
