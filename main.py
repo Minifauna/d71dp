@@ -1,14 +1,17 @@
 from flask import Flask, abort, render_template, redirect, url_for, flash, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, String
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user, login_required
+from sqlalchemy import Integer, String, ForeignKey
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from flask_bootstrap import Bootstrap5
+from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
+from typing import List
 import os
 from dotenv import load_dotenv, dotenv_values
 import pandas as pd
 import re
-from flaskforms import Login
+from flaskforms import Login, Todo, Register
 from projects import translation
 
 load_dotenv()
@@ -24,24 +27,66 @@ class Base(DeclarativeBase):
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
-class User(db.Model):
+class User(db.Model, UserMixin):
+    __tablename__ = "users"
     id: Mapped[int] = mapped_column(primary_key=True)
-    username: Mapped[str] = mapped_column(unique=True)
-    email: Mapped[str] = mapped_column(unique=True)
+    username: Mapped[str] = mapped_column(String(100), unique=True)
+    email: Mapped[str] = mapped_column(String(250), unique=True)
+    password_hash: Mapped[str] = mapped_column(String(250))
+    todo = relationship("Todo", back_populates="user")
+
+class Todo(db.Model):
+    __tablename__ = "todo"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    list_user: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    user = relationship("User", back_populates="todo")
+    task: Mapped[str] = mapped_column(String(400))
+
 
 with app.app_context():
     db.create_all()
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(int(id))
 
 @app.route('/')
 def index():
     return render_template("index.html")
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = Register()
+    if form.validate_on_submit():
+        username = form.username.data
+        email = form.email.data
+        password_hash = generate_password_hash(form.password.data)
+        new_user = User(username=username, email=email, password_hash=password_hash)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template("login.html", form=form)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = Login()
     if form.validate_on_submit():
-        return redirect(url_for('index'))
+        username = form.username.data
+        password = form.password.data
+        result = db.session.execute(db.select(User).where(User.username == username))
+        user = result.scalar()
+        if check_password_hash(user.password_hash, password):
+            login_user(user)
+            return redirect(url_for('index'))
     return render_template("login.html", form=form)
+
+@app.route('/logout', methods=['GET', 'POST'])
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 @app.route('/tropes')
 def horror_tropes():
@@ -71,12 +116,12 @@ def devtest():
     return render_template('devtest.html')
 
 @app.route('/todo')
+@login_required
 def todo_list():
-    todo_list = ['todo list - add datetime for "entered" in db model',
-    'todo list - "done" list for last seven days to readd',
-    'complete morse code translator with focus on deployment here',
-    'expand custom pallete with rgba, Smoky Mountain Sunset']
+    todo_list = ['complete morse code translator with focus on deployment here',
+    'expand custom pallete with rgba, Smoky Mountain Sunset',
+    'update todo.html to interact with Todo portion of DB per user']
     return render_template('todo.html', todo=todo_list)
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
