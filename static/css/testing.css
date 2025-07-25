@@ -1,32 +1,47 @@
 :root {
-    --red-900: #FF204E;
-    --maroon-900: #A0153E;
-    --purple-900: #5D0E41;
-    --navy-900: #00224D;
+    --red-900: rgb(255, 32, 78);
+    --maroon-900: rgb(160, 21, 62);
+    --purple-900: rgb(93, 14, 65);
+    --navy-900: rgb(0, 34, 77);
+    --white-900: rgb(240, 248, 255);
     --card-background: rgba(0, 34, 77, .05);
 }
 
+a {
+    color: var(--white-900);
+}
+
 body, html{
-    background: linear-gradient(45deg, var(--maroon-900) 0%, var(--navy-900) 100%);
+    background: linear-gradient(45deg, var(--purple-900) 0%, var(--navy-900) 100%);
     background-size: 400% 400%;
-    animation: gradient 20s ease infinite;
+    animation: gradient 60s ease infinite;
 }
 
 @keyframes gradient {
     0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%;}    
+    50% { background-position: 100% 0%; }
+    75% { background-position: 0% 100%;}    
+    100% { background-position: 0% 50%; }
+
 }
 
 h1, h5{
     text-align: center;
     text-justify: auto;
-    color: aliceblue;
+    color: var(--white-900);
     mix-blend-mode: difference;
 }
 
 .hero{
+    inline-size: fit-content;
+    margin-inline: auto;
     text-align: center;
+}
+
+
+img {
+    width: 100%;
+    object-fit: contain;
 }
 
 #jumbotron{
@@ -47,7 +62,7 @@ h1, h5{
 }
 
 .card{
-    color: aliceblue;
+    color: var(--white-900);
     mix-blend-mode: difference;
     background: var(--card-background);
     background-blend-mode: difference;
@@ -66,11 +81,11 @@ h1, h5{
 }
 
 .col{
-    color: aliceblue;
+    color: var(--white-900);
 }
 
 .container-fluid{
-    color: aliceblue;
+    color: var(--white-900);
 }
 
 .dropdown-menu{
@@ -80,7 +95,7 @@ h1, h5{
 
 
 .list-group-item{
-    color: aliceblue;
+    color: var(--white-900);
     background: linear-gradient(90deg, var(--navy-900) 0%, var(--navy-900) 100%);
 }
 
@@ -90,34 +105,34 @@ h1, h5{
 }
 
 .navbar-brand{
-    color: aliceblue;
+    color: var(--white-900);
     mix-blend-mode: difference;
 }
 
 .navbar-brand:hover{
-    color: aliceblue;
+    color: var(--white-900);
     background-color: var(--navy-900);
     background-blend-mode: difference;
 }
 
 .nav-item:active{
-    color: aliceblue;
+    color: var(--white-900);
 }
 
 .nav-link{
-    color: aliceblue;
+    color: var(--white-900);
     mix-blend-mode: difference;
     background: rgba(240, 248, 255, .05);
     background-blend-mode: difference;
 }
 
 .nav-link:hover{
-    color: aliceblue;
+    color: var(--white-900);
     mix-blend-mode: difference;
     background: rgba(0, 0, 0, 0.637);
     background-blend-mode: difference;
 }
 
 .row{
-    color: aliceblue;
+    color: var(--white-900);
 }
