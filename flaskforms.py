@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
+from wtforms import StringField, SubmitField, PasswordField, HiddenField
 from wtforms.validators import DataRequired
 
 class Register(FlaskForm):
@@ -13,6 +13,10 @@ class Login(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-class Todo(FlaskForm):
-    task = StringField('TODO: ', validators=[DataRequired()])
-    submit = SubmitField('Add')
+class AddTask(FlaskForm):
+    task = StringField('New Task: ', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+class RemoveTask(FlaskForm):
+    task_id = HiddenField()
+    remove = SubmitField('✓')

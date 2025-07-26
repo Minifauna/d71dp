@@ -36,6 +36,8 @@ h1, h5{
     text-justify: auto;
     color: var(--white-900);
 }
+
+
 .hero{
     height: 100px;
     min-width: 100px;

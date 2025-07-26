@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
 {% block content %}
-<ul class="list-group">
+<h1 style="text-align: start;">
+  TODO:
+</h1>
+<div class="container">
+  <ul class="list-group">
 {% for item in todo %}
 <li class="list-group-item">
-  <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
-  {{ item }}
+  <form action="{{ url_for('todo_list') }}" method="post" >
+  {{ remove.csrf_token }}
+  {{ remove.task_id(value=item.id) }}
+  {{ remove.remove }}
+  {{ item.task }}
+  </form>
 </li>
 {% endfor %}
 </ul>
+</div>
+{{ render_form(form)}}
 {% endblock %}

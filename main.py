@@ -11,7 +11,7 @@ import os
 from dotenv import load_dotenv, dotenv_values
 import pandas as pd
 import re
-from flaskforms import Login, Todo, Register
+from flaskforms import Login, AddTask, Register, RemoveTask
 from projects import translation
 
 load_dotenv()
@@ -115,13 +115,31 @@ def all_tropes():
 def devtest():
     return render_template('devtest.html')
 
-@app.route('/todo')
+@app.route('/todo', methods=['GET', 'POST'])
 @login_required
 def todo_list():
-    todo_list = ['complete morse code translator with focus on deployment here',
-    'expand custom pallete with rgba, Smoky Mountain Sunset',
-    'update todo.html to interact with Todo portion of DB per user']
-    return render_template('todo.html', todo=todo_list)
+    # todo_list = ['complete morse code translator with focus on deployment here',
+    # 'expand custom pallete with rgba, Smoky Mountain Sunset',
+    # 'update todo.html to interact with Todo portion of DB per user']
+    result = db.session.execute(db.select(Todo).where(Todo.user == current_user))
+    todo_list = result.scalars()
+    form = AddTask()
+    task_done = RemoveTask()
+    if form.submit.data and form.validate_on_submit():
+        new_task_list_user = current_user.get_id()
+        new_task_task = form.task.data
+        new_task = Todo(list_user=new_task_list_user, task=new_task_task)
+        db.session.add(new_task)
+        db.session.commit()
+        return redirect(url_for('todo_list'))
+    if task_done.remove.data and task_done.validate_on_submit():
+        task_id = task_done.task_id.data
+        result = db.session.execute(db.select(Todo).where(Todo.id == task_id))
+        finished_task = result.scalar()
+        db.session.delete(finished_task)
+        db.session.commit()
+        return redirect(url_for('todo_list'))
+    return render_template('todo.html', todo=todo_list, form=form, remove=task_done)
 
 if __name__ == "__main__":
     app.run(debug=True)
