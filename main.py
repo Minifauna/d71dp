@@ -118,9 +118,6 @@ def devtest():
 @app.route('/todo', methods=['GET', 'POST'])
 @login_required
 def todo_list():
-    # todo_list = ['complete morse code translator with focus on deployment here',
-    # 'expand custom pallete with rgba, Smoky Mountain Sunset',
-    # 'update todo.html to interact with Todo portion of DB per user']
     result = db.session.execute(db.select(Todo).where(Todo.user == current_user))
     todo_list = result.scalars()
     form = AddTask()
