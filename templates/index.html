@@ -1,8 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
 <!-- <div class="filler"></div> -->
-  <h1><a href="https://github.com/Minifauna">AᴎUAꟻiᴎiM</a></h1>
-<h5><a href="https://ghchart.rshah.org/" target="__blank">IꟼA TᴙAHↃ dUHTiG</a></h5>
+  <h1><a href="https://github.com/Minifauna/d71dp" target="__blank">Github/Minifauna</a></h1>
+  <ul>
+    <li>
+      <a href="{{ url_for('login') }}">Login</a>
+      /
+      <a href="{{ url_for('register') }}">Register</a> 
+      <ul>
+        <li>
+          Registering allows access to DB related apps, at the moment this is only the TODO list
+        </li>
+        <li>
+          The link for the TODO list will appear only upon login
+        </li>
+      </ul>
+      </li>
+      <li>
+        Horror Tropes
+        <ul>
+          <li>
+            <a href="{{ url_for('all_tropes') }}">Full List</a> is a list of horror tropes sourced from tvtropes.com for use in the game
+          </li>
+          <li>
+            <a href="{{  url_for('horror_tropes') }}">Game</a> is a selection of 5 tropes at random to track the appearance of throughout the film
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="{{ url_for('devtest') }}">DevTest</a> is a reminder for some fundamentals and a place for me to interact with basic HTML/CSS elements in development
+      </li>
+  </ul>
 
 
 {% endblock %}
