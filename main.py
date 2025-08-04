@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user, login_required
 from sqlalchemy import Integer, String, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy.exc import SQLAlchemyError
 from flask_bootstrap import Bootstrap5
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
@@ -64,9 +65,13 @@ def register():
         email = form.email.data
         password_hash = generate_password_hash(form.password.data)
         new_user = User(username=username, email=email, password_hash=password_hash)
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect(url_for('index'))
+        try:
+            db.session.add(new_user)
+            flash('Thank you!')
+            db.session.commit()
+            return redirect(url_for('index'))
+        except SQLAlchemyError:
+            return render_template("login.html", form=form)
     return render_template("login.html", form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -80,6 +85,8 @@ def login():
         if check_password_hash(user.password_hash, password):
             login_user(user)
             return redirect(url_for('index'))
+        else:
+            return render_template("login.html", form=form)
     return render_template("login.html", form=form)
 
 @app.route('/logout', methods=['GET', 'POST'])
